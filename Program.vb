@@ -2,10 +2,16 @@ Imports System
 
 Module Program
     Sub Main(args As String())
-        Console.WriteLine(test)
+        'Console.WriteLine(strYMDTwoDates("31/07/2019", "15/07/2020"))
+
+        Dim dts As DateTimeSpan = DateTimeSpan.DateSpan("#30/07/2019#", "#15/07/2020#")
+
+        Console.WriteLine("{0} Yrs, {1} Months and {2} Days",
+                           dts.Years.ToString, dts.Months.ToString, dts.Days.ToString)
+
     End Sub
 
-    Function test() As String
+    Function ListOfListTesting() As String
 
         'Dim rows As New List(Of List(Of String))
         Dim rows As New System.Collections.ArrayList
@@ -38,6 +44,25 @@ Module Program
 
     End Function
 
+    Function strYMDTwoDates(D1 As Date, D2 As Date) As String
+
+        Dim dDay As Date
+
+        Dim sYears As String
+        Dim sDays As String
+        Dim sMonths As String
+
+        sYears = DateDiff(DateInterval.Year, D1, D2)
+
+        dDay = D1.AddYears(sYears)
+
+        sMonths = DateDiff(DateInterval.Month, dDay, D2)
+
+        sDays = DateDiff(DateInterval.Day, dDay, D2)
+
+        Return sYears & " Year " & sMonths & " Months " & sDays & " Day(s)"
+
+    End Function
 
 
 End Module
