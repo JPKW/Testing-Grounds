@@ -7,32 +7,34 @@ Module Program
 
     Function test() As String
 
-        Dim rows = New List(Of List(Of String))
-        'Dim rows = New System.Collections.ArrayList
+        'Dim rows As New List(Of List(Of String))
+        Dim rows As New System.Collections.ArrayList
 
         'Return Interest Table function (NB: this is the body of the table)
-
         Dim al As New List(Of String)
-        Dim bl As New List(Of String)
+        Dim bl As New List(Of Integer)
         Dim cl As New List(Of String)
         Dim dl As New List(Of String)
 
         al.AddRange({"aa", "ab", "ac"})
-        bl.AddRange({"ba", "bb", "bc"})
+        bl.AddRange({1, 2, 3})
         cl.AddRange({"ca", "cb", "cc"})
         dl.AddRange({"da", "db", "dc"})
 
-        rows.AddRange({al, bl, cl, dl})
+        rows.Insert(0, {al, bl, cl, dl})
 
-        Dim LastRow As List(Of String)
-        LastRow = rows(rows.Count - 1)
+        Dim rowslist As New List(Of Object)
+
+        rowslist.AddRange(rows(0))
+
+        Dim finalrow As New List(Of String)
+
+        finalrow.AddRange(rowslist(2))
 
         Dim DailyAmount As String
-        DailyAmount = LastRow(2)
+        DailyAmount = finalrow(2)
 
         Return DailyAmount
-
-
 
     End Function
 
